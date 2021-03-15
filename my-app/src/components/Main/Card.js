@@ -3,8 +3,7 @@ import React from 'react';
 const Card = () => {
     return (   
     <div className="col-lg-6 mb-4">						
-        
-                <div className="col-lg-6 mb-4">
+           <div className="col-lg-6 mb-4">
                     <div className="card bg-info text-white shadow">
                         <div className="card-body">
                             Category 02
@@ -40,7 +39,7 @@ const Card = () => {
                     </div>
              
     </div>
-</div>);
+    </div>);
 }
  
 export default Card;
