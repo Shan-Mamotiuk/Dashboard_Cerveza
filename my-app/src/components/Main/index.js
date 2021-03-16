@@ -1,8 +1,13 @@
 import React from 'react';
 import Article from './Article'
+import Card from './Card/Card'
+import LastProduct from './LastProduct';
 
-const Main = () => {
-    return ( <div className="container-fluid">
+let Categories = ["Category 1","Category 2","Category 3","Category 4","Category 5",]
+
+function Main() {
+    return ( 
+    <div className="container-fluid">
 
 
     <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -10,58 +15,25 @@ const Main = () => {
     </div>
 
     <div className="row">
-
-        
-        <div className="col-md-4 mb-4">
-            <div className="card border-left-primary shadow h-100 py-2">
-                <div className="card-body">
-                    <div className="row no-gutters align-items-center">
-                        <div className="col mr-2">
-                            <div className="text-xs font-weight-bold text-primary text-uppercase mb-1"> Products in Data Base</div>
-                            <div className="h5 mb-0 font-weight-bold text-gray-800">135</div>
-                        </div>
-                        <div className="col-auto">
-                            <i className="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        
-        <div className="col-md-4 mb-4">
-            <div className="card border-left-success shadow h-100 py-2">
-                <div className="card-body">
-                    <div className="row no-gutters align-items-center">
-                        <div className="col mr-2">
-                            <div className="text-xs font-weight-bold text-success text-uppercase mb-1"> Amount in products</div>
-                            <div className="h5 mb-0 font-weight-bold text-gray-800">$546.456</div>
-                        </div>
-                        <div className="col-auto">
-                            <i className="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        
-        <div className="col-md-4 mb-4">
-            <div className="card border-left-warning shadow h-100 py-2">
-                <div className="card-body">
-                    <div className="row no-gutters align-items-center">
-                        <div className="col mr-2">
-                            <div className="text-xs font-weight-bold text-warning text-uppercase mb-1">Users quantity
-                            </div>
-                            <div className="h5 mb-0 font-weight-bold text-gray-800">38</div>
-                        </div>
-                        <div className="col-auto">
-                            <i className="fas fa-user-check fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <Card
+            title = {"Products in Data Base"}
+            info = {"135"}
+            colorTheme = {"primary"}
+            icon = {<i className="fas fa-clipboard-list fa-2x text-gray-300"></i>}
+        />
+        <Card
+            title = {"Amount in products"}
+            info = {"$546.456"}
+            colorTheme = {"success"}
+            icon = {<i className="fas fa-dollar-sign fa-2x text-gray-300"></i>}
+        />
+        <Card
+            title = {"Users quantity"}
+            info = {"38"}
+            colorTheme = {"warning"}
+            icon = {<i className="fas fa-user-check fa-2x text-gray-300"></i>}
+        />
+       
     </div>
 
     <div className="row">
@@ -70,19 +42,21 @@ const Main = () => {
                 <div className="card-header py-3">
                     <h6 className="m-0 font-weight-bold text-primary">Last product in Data Dase</h6>
                 </div>
-                <div className="card-body">
-                    <div className="text-center">
-                        <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{width: "25rem"}} src="assets/images/product_dummy.svg" alt="dummy"/>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, consequatur explicabo officia inventore libero veritatis iure voluptate reiciendis a magnam, vitae, aperiam voluptatum non corporis quae dolorem culpa exercitationem ratione?</p>
-                    <a target="_blank" rel="nofollow" href="/">View product detail</a>
-                </div>
+
+                <LastProduct
+                    name={"Ultimo Producto"}
+                    image={"imagen"}
+                    desc={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, consequatur explicabo officia inventore libero veritatis iure voluptate reiciendis a magnam, vitae, aperiam voluptatum non corporis quae dolorem culpa exercitationem ratione?"}
+                    id={"4"}
+                />
+
             </div>
         </div>
+        
+        <Article
+            Categories = {Categories}
+        />
 
-
-        <Article/>
-       
     </div>
     </div>
  );

@@ -1,32 +1,29 @@
-import SideBar from './SideBar'
-import Header from './Header'
+import SideBar from './Main/SideBar/index'
+import Header from './Header/Header'
 import Main from './Main';
-import Footer from './Footer'
-import Card from './Main/Card.js'
+import Footer from './Footer/Footer'
+import AllProductsDisplay from './Main/AllProductsDisplay/index.js'
 
 function App() {
   return (
-    <>
+    <main>
+        <div id="wrapper">
         <SideBar/>
 
 		<div id="content-wrapper" className="d-flex flex-column">
 			<div id="content">
-
-
+				
 				<Header/>		
 
 				<Main/>
 
-
-
-				 
-				
-				
-			</div>			
+			</div>
+			<AllProductsDisplay/>			
 			<Footer/>
 
 		</div>
-    </>
+		</div>
+	</main>
   );
 }
 
