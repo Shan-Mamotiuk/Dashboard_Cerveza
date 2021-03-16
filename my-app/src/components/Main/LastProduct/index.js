@@ -6,7 +6,7 @@ function LastProduct(props) {
                 <h3>{props.name}</h3>
             </div>
             <p>{props.desc}</p>
-            <a target="_blank" rel="nofollow" href={"http://localhost:3000/products/"+props.id}>View more details</a>
+            <a target="_blank" rel="nofollow" href={"http://localhost:3001/products/"+props.id}>View more details</a>
         </div>
     );
 }
