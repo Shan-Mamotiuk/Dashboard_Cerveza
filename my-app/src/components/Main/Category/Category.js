@@ -1,5 +1,5 @@
 import React from 'react';
-import Resourses from '../../../requests/Resourses';
+// import Resourses from '../../../requests/Resourses';
 
 function Category(props) {
     return ( 

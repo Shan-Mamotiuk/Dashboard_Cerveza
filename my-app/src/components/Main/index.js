@@ -1,14 +1,50 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Article from './Article'
 import Card from './Card/Card'
 import LastProduct from './LastProduct';
+import Requests from '../../requests/Resourses'
 
 let Categories = ["Category 1","Category 2","Category 3","Category 4","Category 5",]
 
-function Main() {
-    return ( 
-    <div className="container-fluid">
+const Main = () => {
+    const [products, setProducts] = useState({});
+    // useEffect(()=>{
+    //     fetch("http://localhost:3001/api/users")
+    //     .then(res => res.json())
+    //     .then(data => setUsers(data))
+    // },[])
+    const handleClick = () =>{
+        fetch("http://localhost:3001/api/products")
+        .then(res => res.json())
+        .then(data => setProducts(data))
+    }
+    const [users, setUsers] = useState({});
+    const handleUsers = () =>{
+        fetch("http://localhost:3001/api/users")
+        .then(res => res.json())
+        .then(data => setUsers(data))
+    }
+ 
+    
+    
 
+    return ( 
+    <div 
+    onLoadStart={handleClick}
+    className="container-fluid">
+        
+        <button
+        className="btn btn-primary"
+        onClick={handleClick}
+        >
+            cargar info
+        </button>
+        <button
+        className="btn btn-primary"
+        onClick={handleUsers}
+        >
+            cargar users
+        </button>
 
     <div className="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 className="h3 mb-0 text-gray-800">App Dashboard</h1>
@@ -17,7 +53,7 @@ function Main() {
     <div className="row">
         <Card
             title = {"Products in Data Base"}
-            info = {"135"}
+            info = {products.cantidad}
             colorTheme = {"primary"}
             icon = {<i className="fas fa-clipboard-list fa-2x text-gray-300"></i>}
         />
@@ -29,7 +65,7 @@ function Main() {
         />
         <Card
             title = {"Users quantity"}
-            info = {"38"}
+            info = {users.cantidad}
             colorTheme = {"warning"}
             icon = {<i className="fas fa-user-check fa-2x text-gray-300"></i>}
         />
