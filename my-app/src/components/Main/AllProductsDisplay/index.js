@@ -30,30 +30,22 @@ function AllProductsDisplay(props) {
 							</tr>
 						</tfoot>
 						<tbody>
-                            <ProductsDisplayRow
-								name={"Nombre del producto"}
-								desc={"Descripcion del producto"}
-								price={"Precio del producto"}
-								preview={"Preview"}
-								categories={"Categorias"}
-								color={"Color del producto"}
+						{/* {console.log(props.Productos)} */}
+						{
+							
+                            props.Productos.map(producto =>
+                                <ProductsDisplayRow
+								name={producto.name}
+								desc={producto.description}
+								price={"$"+producto.price}
+								preview={"http://localhost:3001/products/"+producto.id}
+								categories={producto.category.name}
+								color={producto.srm_index.code}
 							/>
-							<ProductsDisplayRow
-								name={"Nombre del producto"}
-								desc={"Descripcion del producto"}
-								price={"Precio del producto"}
-								preview={"Preview"}
-								categories={"Categorias"}
-								color={"Color del producto"}
-							/>
-							<ProductsDisplayRow
-								name={"Nombre del producto"}
-								desc={"Descripcion del producto"}
-								price={"Precio del producto"}
-								preview={"Preview"}
-								categories={"Categorias"}
-								color={"Color del producto"}
-							/>
+                            )
+                        }
+							
+                            
 						</tbody>
 					</table>
 				</div>

@@ -2,9 +2,9 @@ import React, {useState, useEffect, Component} from 'react';
 import Article from './Article'
 import Card from './Card/Card'
 import LastProduct from './LastProduct';
-import Requests from '../../requests/Resourses'
+import AllProductsDisplay from './AllProductsDisplay'
 
-let Categories = ["Category 1","Category 2","Category 3","Category 4","Category 5",]
+// let Categories = ["Category 1","Category 2","Category 3","Category 4","Category 5",]
 
 class Main extends Component {
     constructor (props) {
@@ -12,6 +12,7 @@ class Main extends Component {
         this.state = {
             products: "",
             users: "",
+            categories: "",
             errors: true,
             id: "",
             name: "",
@@ -25,13 +26,16 @@ class Main extends Component {
             .then(res => res.json())
             .then(data => call(data))
     }
+    
 
     componentDidMount() {
         let endpointProducts = 'http://localhost:3001/api/products';
         let callProducts = (data) => {
             
-            this.setState({products: data.productos})
+            this.setState({products: data.productos,categories: data.cantidadPorCategoría})
         }
+
+        
         let endpointUsers = 'http://localhost:3001/api/users';
         let callUsers = (data) => {
             
@@ -42,10 +46,10 @@ class Main extends Component {
         this.fetchCall(endpointUsers, callUsers);
     }
     componentDidUpdate(){
-        console.log("-----------------")
-        console.log(this.state.products)
-        console.log("-----------------")
-        console.log(this.state.users)
+        // console.log("-----------------")
+        // console.log(this.state.products)
+        // console.log("-----------------")
+        // console.log(this.state.users)
     }
 
     handleChange (e) {
@@ -61,25 +65,41 @@ class Main extends Component {
 
 
    render () {
-       let {products, users} = this.state;
+        // products="";
+       let {products, users, categories} = this.state;
+       
+       let Categories = Object.keys(categories); 
+       let productosCargados=[
+           {
+               category:{
+                   name:""
+               },
+               srm_index:{
+                   code:""
+               }
+           }
+       ]
+       
+       if(products){
+        var ultimoName= products[products.length-1].name;
+        var ultimoDescripcion= products[products.length-1].description;
+        var ultimoImage= products[products.length-1].image;
+        var ultimoId= products[products.length-1].id;
+        productosCargados= products
+        
+       } 
+       var precioTotal=0;
+       for (let i = 0; i < products.length; i++) {
+           
+           precioTotal = products[i].price+precioTotal;           
+       }
        
        return (
         <div 
         // onLoadStart={handleClick}
         className="container-fluid">
             
-            <button
-            className="btn btn-primary"
-            // onClick={handleClick}
-            >
-                cargar info
-            </button>
-            <button
-            className="btn btn-primary"
-            // onClick={handleUsers}
-            >
-                cargar users
-            </button>
+            
     
         <div className="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 className="h3 mb-0 text-gray-800">App Dashboard</h1>
@@ -94,7 +114,7 @@ class Main extends Component {
             />
             <Card
                 title = {"Amount in products"}
-                info = {"$546.456"}
+                info = {"$"+precioTotal}
                 colorTheme = {"success"}
                 icon = {<i className="fas fa-dollar-sign fa-2x text-gray-300"></i>}
             />
@@ -115,10 +135,10 @@ class Main extends Component {
                     </div>
     
                     <LastProduct
-                        name = {"name"}
-                        image = {"imagen"}
-                        desc ={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, consequatur explicabo officia inventore libero veritatis iure voluptate reiciendis a magnam, vitae, aperiam voluptatum non corporis quae dolorem culpa exercitationem ratione?"}
-                        id = {"4"}
+                        name = {ultimoName}
+                        image = {ultimoImage}
+                        desc ={ultimoDescripcion}
+                        id = {ultimoId}
                     />
     
                 </div>
@@ -126,9 +146,13 @@ class Main extends Component {
             <Article
                 Categories = {Categories}
             />
-    
+        <AllProductsDisplay
+            Productos = {productosCargados}    
+        
+        />
         </div>
         </div>
+        
            
        )
    }

@@ -2,7 +2,7 @@ function LastProduct(props) {
     return (
         <div className="card-body">
             <div className="text-center">
-                <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" src={'http://localhost:3001/'+props.image} alt="dummy product" />
+                <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" src={'http://localhost:3001/uploads/'+props.image} alt="dummy product" />
                 <h3>{props.name}</h3>
             </div>
             <p>{props.desc}</p>
