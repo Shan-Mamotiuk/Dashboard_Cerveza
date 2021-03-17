@@ -1,5 +1,5 @@
 function ProductsDisplayRow(props) {
-    let color= props.color
+    let colorSrm = props.color;
     return (
 
         <tr>
@@ -13,8 +13,11 @@ function ProductsDisplayRow(props) {
             </td>
             <td>
             <ul>
-                    {/* <li><div style={"background-color:red"}></div></li> */}
-                    <li><span className="text-danger"  color={props.color} >{props.color}</span></li>
+                    
+                    <li style={{listStyle: 'none', display: 'flex'}}> 
+                        <div style = {{backgroundColor: colorSrm, display:'inline-block',height: '20px', width: '20px', marginRight: '20px', marginLeft:'-10px', borderRadius: '40px' }}></div>
+                        <span  style = {{color: colorSrm }} >{colorSrm}</span>
+                    </li>
             </ul>
             </td>
             <td>Stock</td>
