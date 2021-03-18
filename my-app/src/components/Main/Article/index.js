@@ -13,7 +13,8 @@ function Article(props) {
                         {
                             props.Categories.map(category =>
                                 <Category
-                                    name={category}                            
+                                    name={Object.keys(category)}
+                                    info={Object.values(category)}                            
                                 />
                             )
                         }                 

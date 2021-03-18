@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Component} from 'react';
+import React, {Component} from 'react';
 import Article from './Article'
 import Card from './Card/Card'
 import LastProduct from './LastProduct';
@@ -67,8 +67,16 @@ class Main extends Component {
    render () {
         // products="";
        let {products, users, categories} = this.state;
-       
-       let Categories = Object.keys(categories); 
+    
+    //    let Categories = Object.keys(categories); 
+
+        let categoriesData = []
+        for(let category in categories){
+            let objeto = {}
+            objeto[category] = categories[category]
+            categoriesData.push(objeto)
+        }
+
        let productosCargados=[
            {
                category:{
@@ -144,7 +152,7 @@ class Main extends Component {
                 </div>
             </div>            
             <Article
-                Categories = {Categories}
+                Categories = {categoriesData}
             />
         <AllProductsDisplay
             Productos = {productosCargados}    
